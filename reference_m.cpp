@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 using namespace std;
 
     int balances[] = {3000, 8000, 12000};
@@ -37,12 +38,21 @@ using namespace std;
         else
             return 1;
     }
-    unsigned short checkPass(unsigned short userpass, unsigned short realpass)
+    unsigned short checkPass(unsigned short userpass, unsigned short realpass,unsigned short confirm)
     {
-        if (userpass == realpass)
-            return 1;
+        if (confirm)
+        {
+            if (userpass == realpass)
+                return 1;
+            else
+                return 0;
+        }
+
         else
+        {
+            cout << "please press confirm" << endl;
             return 0;
+        }
     }
     int deposit(unsigned short amount, unsigned short id, unsigned short confirm)
     {
@@ -73,70 +83,83 @@ using namespace std;
         return 0;
     }
 
-    int atm(unsigned short reset, unsigned short language, unsigned short confirm_d, unsigned short confirm_withd, unsigned short confirm_lang, unsigned short cardid, unsigned short password, unsigned short operation, unsigned short depositValue, unsigned short withdrawValue)
+    int atm(unsigned short reset, unsigned short language,unsigned short card_in ,unsigned short confirm_d, unsigned short confirm_withd, unsigned short confirm_lang,unsigned short confirm_pass, unsigned short cardid, unsigned short password, unsigned short operation, unsigned short depositValue, unsigned short withdrawValue,unsigned short& card_out)
     {
         int balance = 0;
         unsigned short cardFound = 0, rightpassword = 0, time_out = 0, counter = 0;
-        checkCard(cardid, cardFound, balance);
-        if (reset == 0)
-        {
-            if (cardFound)
+        if(card_in){
+            checkCard(cardid, cardFound, balance);
+            if (reset == 0)
             {
-                rightpassword = checkPass(password, passwords[cardid]);
-            }
-            else
-            {
-                cout << "card not found" << endl;
-                return 0;
-            }
-            if (rightpassword)
-            {
-                if (language == Arabic && confirm_lang)
+                if (cardFound)
                 {
-                    cout << "you selected Arabic language" << endl;
+                    rightpassword = checkPass(password, passwords[cardid],confirm_pass);
                 }
-                else if (language == English && confirm_lang)
+                else
                 {
-                    cout << "you selected English language" << endl;
+                    cout << "card not found" << endl;
+                    card_out=1;
+                    return 0;
                 }
-                else if (!confirm_lang)
+                if (rightpassword)
                 {
-                    cout << "please press confirm" << endl;
-                }
-                
-                switch (operation)
-                {
-                case Deposit:
-                    balance= deposit(depositValue, cardid, confirm_d);
-                    cout << "new balance is " << balance << endl;
-                    break;
-                case Withdraw:
-                    balance = withdraw(withdrawValue, cardid, confirm_withd);
-                    cout << "new balance is " << balance << endl;
-                    break;
-                case BalanceService:
-                    cout << "your balance is " << balance << endl;
-                    break;
-                case Cardoutop:
+                    if (language == Arabic && confirm_lang)
+                    {
+                        cout << "you selected Arabic language" << endl;
+                    }
+                    else if (language == English && confirm_lang)
+                    {
+                        cout << "you selected English language" << endl;
+                    }
+                    else if (!confirm_lang)
+                    {
+                        cout << "please press confirm" << endl;
+                    }
+                    
+                    switch (operation)
+                    {
+                    case Deposit:
+                        balance= deposit(depositValue, cardid, confirm_d);
+                        card_out=1;
+                        cout << "balance=" << balance << endl;
+                        break;
+                    case Withdraw:
+                        balance = withdraw(withdrawValue, cardid, confirm_withd);
+                        card_out=1;
+                        cout << "balance=" << balance << endl;
+                        break;
+                    case BalanceService:
+                        cout << "balance=" << balance << endl;
+                        card_out=1;
+                        break;
+                    case Cardoutop:
+                        card_out=1;
+                        return balance;
+                        break;
+                    default:
+                        cout << "please enter a valid operation" << endl;
+                        cout << "exiting system..." << endl;
+                        card_out=1;
+                        return balance;
+                    }
                     return balance;
-                    break;
-                default:
-                    cout << "please enter a valid operation" << endl;
+                }
+                else
+                {
+                    cout << "sorry, you have entered a wrong password" << endl;
                     cout << "exiting system..." << endl;
-                    return balance;
+                    card_out=1;
+                    return 0;
                 }
-                return balance;
             }
             else
             {
-                cout << "sorry, you have entered a wrong password" << endl;
-                cout << "exiting system..." << endl;
+                cout << "reset flag enabled" << endl;
                 return 0;
             }
         }
-        else
-        {
-            cout << "reset flag enabled" << endl;
+        else{
+            cout <<"No card entered"<<endl;
             return 0;
         }
     }
@@ -145,19 +168,33 @@ using namespace std;
 
 
     int main(){
+
+    std::ofstream outfile("output_ref.txt",std::ios_base::app);
+
+    if (!outfile) {
+        std::cerr << "Unable to open file";
+        return 1;
+    }
+
         int balance;
 
         unsigned short reset =0;
         unsigned short confirm_d=1;
-        unsigned short confirm_withd=1;
+        unsigned short confirm_withd=0;
         unsigned short confirm_lang=1;
-        unsigned short cardid=4;
-        unsigned short password=1;
+        unsigned short confirm_pass=1;
+        unsigned short card_in=1;
+        unsigned short cardid=0;
+        unsigned short password=0;
         unsigned short language=1;
-        unsigned short operation1=Withdraw;
-        unsigned short depositValue=1000;
-        unsigned short withdrawValue=256;
-        
-        balance=atm(reset,language,confirm_d,confirm_withd,confirm_lang,cardid,password,operation1,depositValue,withdrawValue);
-        
+        unsigned short operation1=Deposit;
+        unsigned short depositValue=256;
+        unsigned short withdrawValue=0;
+        unsigned short card_out=0;
+
+        outfile << "balance=" << balances[cardid] << std::endl;
+        balance=atm(reset,language,card_in,confirm_d,confirm_withd,confirm_lang,confirm_pass,cardid,password,operation1,depositValue,withdrawValue,card_out);
+        cout <<"Card_out=" << card_out << endl;
+
+        outfile << "balance=" << balance << std::endl;
     }

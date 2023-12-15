@@ -17,6 +17,7 @@ begin
 
     else if(restart) begin
             counter <=0;
+            time_out <= 0;
         end
 
     else begin
@@ -30,10 +31,10 @@ begin
             time_out <= 1;
             counter  <= 0 ;
         end
-        else
-        begin
-            time_out <= 0;
-        end
+        // else
+        // begin
+        //     time_out <= 0;
+        // end
  end
     
 

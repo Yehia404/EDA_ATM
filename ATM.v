@@ -1,29 +1,34 @@
 module topmodule(
-input clk,reset,language,confirm_d,confirm_withd,confirm_lang,
+input clk,reset,language,card_in,confirm_d,confirm_withd,confirm_lang,confirm_pass,
 input [1:0]cardId,password,
 input [1:0]operation,
 input [15:0]depositValue,withdrawValue,
 output time_out,
+output reg card_out,
 output reg [15:0]balance
 );
-parameter card1=2'b00,card2=2'b01,card3=2'b10,card4=2'b11;
+// Parameters including cards, passwords, states, operations and languages
+parameter card1=2'b00,card2=2'b01,card3=2'b10;
 parameter p1=2'b00,p2=2'b01,p3=2'b10;
-parameter cardin=3'b000,passState=3'b001,langState=3'b010,opMenu=3'b011,anotherServiceState=3'b100,cardout=3'b101;
+parameter idle=3'b000,cardin=3'b001,passState=3'b010,langState=3'b011,opMenu=3'b100,anotherServiceState=3'b101,cardout=3'b110;
 parameter deposit=2'b00,withdraw=2'b01,balanceService=2'b10,cardoutop=2'b11;
 parameter English=1'b0,Arabic=1'b1;
-
+//Arrays for storing cards, passwords,balances and languages
 reg [1:0]cards[2:0];
 reg [1:0]passwords[2:0];
 reg [15:0]balances[2:0];
 reg languages[1:0];
-reg [1:0] counter;
-reg [2:0] current_state, next_state;
-reg verified;
-reg syslang;
-reg restart;
 
+reg [1:0] counter_p; //password fail counter
+reg [2:0] current_state, next_state; // FSM States
+reg verified; // verification for that card, password, deposit and withdraw are successful
+reg syslang; // System Language
+
+// Time_out timer
+reg restart;
 timer idle_timer(clk,reset,restart,time_out);
 
+// Arrays initialization
 initial 
 begin
     cards[0]=card1;
@@ -38,27 +43,45 @@ begin
     languages[English]=English;
     languages[Arabic]=Arabic;
     
-   
 end
-always @ (posedge clk or posedge reset)
+
+// State Memory
+always @ (posedge clk or posedge reset /*or posedge time_out*/)
 begin
-    if(reset) begin
-    current_state<=cardin;
-    restart<=1;
-    counter<=0;
+    // if(time_out) begin
+    //     restart<=1;
+    //     next_state<=cardout;
+    // end
+    if(reset /*| time_out*/) begin
+        current_state<=idle;
+        restart<=1;
+        counter_p<=0;
+        balance<=0;
+        // card_out<=time_out?1:0;
     end
     else
-    current_state<=next_state;
+        current_state<=next_state;
 end
 
-
-always @ (current_state or operation or cardId or password  or depositValue or withdrawValue)
+// Next State Logic and Output Logic
+always @ (*)
 begin
-
+// if(time_out)
+// next_state=cardout;
+// else
+// next_state=next_state;
 case (current_state)
-
+    idle: begin
+        card_out=0;
+        counter_p=0;
+        if(card_in)
+            next_state=cardin;
+        else
+            next_state=idle;
+    end
     cardin:
     begin
+        
         checkCard(cardId,balance,verified);
         if(verified)
             next_state=passState;
@@ -71,17 +94,20 @@ case (current_state)
     begin
         checkPassword(password,verified);
         if(verified) begin
+            restart=1;
             next_state=langState;
         end
-        else if(counter<3)
+        else if(counter_p<3)
             begin
-            counter=counter+1;
-            $display("transition");
+            counter_p=counter_p+1;
             next_state=passState;
             end
-        else begin
+        
+        if(counter_p==3 | time_out) begin
+            // restart=time_out?1:0;
             next_state=cardout;
         end
+        
 
 
 
@@ -108,7 +134,8 @@ case (current_state)
             begin
                 $display("deposit here");
                 depositfunc(depositValue);
-                restart=time_out?1:0;
+                if (!restart)
+                    restart=time_out?1:0;
                 next_state=time_out?cardout:anotherServiceState;
                 
             end
@@ -141,16 +168,17 @@ case (current_state)
             
         endcase
     end
-    anotherServiceState:
+    anotherServiceState: 
         next_state=opMenu;
-        
+
     cardout: begin
+            card_out=1;        
             restart=1;
-            next_state = cardin;
+            next_state = idle;
     end
 
     default:
-        next_state=cardin;
+        next_state=idle;
 endcase
 end
 
@@ -192,20 +220,23 @@ endtask
 task checkPassword;
     input [1:0]User_Password;
     output reg pin_verified;
+    if(confirm_pass) begin
+        restart=1;
+        if(User_Password==passwords[cardId]) 
+            begin 
 
-    if(User_Password==passwords[cardId]) 
-        begin 
+            $display("Correct Password");
+            pin_verified = 1;
 
-        $display("Correct Password");
-        pin_verified = 1;
-
-        end
-    else 
-        begin
-        $display("incorrect Password");
-        pin_verified = 0;
-        end
-
+            end
+        else 
+            begin
+            $display("incorrect Password");
+            pin_verified = 0;
+            end
+    end
+    else
+        restart=0;
 
 endtask
 
@@ -263,7 +294,6 @@ begin
     end
  end
  else begin
-    // withdraw=0;
     restart =0;
  end
 
