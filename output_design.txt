@@ -1,4 +1,0 @@
-balance=    0
-balance= 8000
-balance= 7744
-balance= 8744
