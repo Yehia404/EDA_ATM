@@ -50,26 +50,26 @@ end
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
 
-// initial begin                                       //Directed Test Case (True Value)
-//     reset=1;                                        // (Deposit then cardout) balance=3000, expected output balance=3256
+initial begin                                       //Directed Test Case (True Value)
+    reset=1;                                        // (Deposit then cardout) balance=3000, expected output balance=3256
 
-// #2  reset=0;
-//     confirm_d=1;
-//     confirm_withd=0;
-//     confirm_lang=1;
-//     confirm_pass=1;
-//     card_in=1;
-//     cardId=2'b00;
-//     password=2'b00;
-//     language=1;
-//     operation=2'b00;
-//     depositValue=16'd256; 
-//     withdrawValue=0;
-// #35
-//     operation=2'b11;
-//     @(negedge clk);
-//     $stop;
-// end
+#2  reset=0;
+    confirm_d=1;
+    confirm_withd=0;
+    confirm_lang=1;
+    confirm_pass=1;
+    card_in=1;
+    cardId=2'b00;
+    password=2'b00;
+    language=1;
+    operation=2'b00;
+    depositValue=16'd256; 
+    withdrawValue=0;
+#35
+    operation=2'b11;
+    @(negedge clk);
+    $stop;
+end
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
 

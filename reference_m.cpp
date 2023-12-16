@@ -188,13 +188,23 @@ using namespace std;
         unsigned short password=0;
         unsigned short language=1;
         unsigned short operation1=Deposit;
+    //  unsigned short operation2=Withdraw;
+    //  unsigned short operation3=Deposit;
         unsigned short depositValue=256;
         unsigned short withdrawValue=0;
         unsigned short card_out=0;
 
-        outfile << "balance=" << balances[cardid] << std::endl;
+        outfile << "balance= " << balances[cardid] << std::endl;
         balance=atm(reset,language,card_in,confirm_d,confirm_withd,confirm_lang,confirm_pass,cardid,password,operation1,depositValue,withdrawValue,card_out);
-        cout <<"Card_out=" << card_out << endl;
 
-        outfile << "balance=" << balance << std::endl;
+        // Multiple Operations
+
+        // outfile << "balance= " << balance << std::endl;
+        // balance=atm(reset,language,card_in,0,1,confirm_lang,confirm_pass,cardid,password,operation2,depositValue,withdrawValue,card_out);
+        // outfile << "balance= " << balance << std::endl;
+        // balance=atm(reset,language,card_in,1,0,confirm_lang,confirm_pass,cardid,password,operation3,depositValue,withdrawValue,card_out);
+
+        cout <<"Card_out= " << card_out << endl;
+
+        outfile << "balance= " << balance << std::endl;
     }
