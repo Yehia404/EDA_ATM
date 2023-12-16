@@ -24,7 +24,7 @@ reg [2:0] current_state, next_state; // FSM States
 reg verified; // verification for that card, password, deposit and withdraw are successful
 reg syslang; // System Language
 
-// Time_out timer
+// Time_out timer and its restart
 reg restart;
 timer idle_timer(clk,reset,restart,time_out);
 
@@ -41,23 +41,18 @@ begin
     balances[cards[1]]=8000;
     balances[cards[2]]=12000;
     languages[English]=English;
-    languages[Arabic]=Arabic;
-    
+    languages[Arabic]=Arabic; 
 end
 
 // State Memory
-always @ (posedge clk or posedge reset /*or posedge time_out*/)
+always @ (posedge clk or posedge reset)
 begin
-    // if(time_out) begin
-    //     restart<=1;
-    //     next_state<=cardout;
-    // end
-    if(reset /*| time_out*/) begin
+    
+    if(reset) begin
         current_state<=idle;
         restart<=1;
         counter_p<=0;
         balance<=0;
-        // card_out<=time_out?1:0;
     end
     else
         current_state<=next_state;
@@ -66,12 +61,10 @@ end
 // Next State Logic and Output Logic
 always @ (*)
 begin
-// if(time_out)
-// next_state=cardout;
-// else
-// next_state=next_state;
+
 case (current_state)
     idle: begin
+        // $display("idle here");
         card_out=0;
         counter_p=0;
         if(card_in)
@@ -79,19 +72,18 @@ case (current_state)
         else
             next_state=idle;
     end
-    cardin:
-    begin
-        
+
+    cardin: begin
+        // $display("cardin here");
         checkCard(cardId,balance,verified);
         if(verified)
             next_state=passState;
         else
             next_state=cardout;
-
     end
 
-    passState:
-    begin
+    passState: begin
+        // $display("password here");
         checkPassword(password,verified);
         if(verified) begin
             restart=1;
@@ -104,18 +96,12 @@ case (current_state)
             end
         
         if(counter_p==3 | time_out) begin
-            // restart=time_out?1:0;
             next_state=cardout;
         end
-        
-
-
-
     end
 
-    langState:
-    begin
-        $display("Language here");
+    langState: begin
+        // $display("Language here");
         if(confirm_lang) begin
             restart=1;
             syslang=languages[language];
@@ -127,21 +113,19 @@ case (current_state)
         end
     end
 
-   opMenu:
-    begin
+   opMenu: begin
         case (operation)
-            deposit:
-            begin
-                $display("deposit here");
+            deposit: begin
+                // $display("deposit here");
                 depositfunc(depositValue);
                 if (!restart)
                     restart=time_out?1:0;
-                next_state=time_out?cardout:anotherServiceState;
-                
+                next_state=time_out?cardout:anotherServiceState; 
             end
-            withdraw:
-            begin
-                withdrawfunc(withdrawValue,verified);
+
+            withdraw: begin
+                //$display("withdraw here");
+                    withdrawfunc(withdrawValue,verified);
                     if(verified) begin
                         restart=1;
                         next_state=anotherServiceState;
@@ -152,8 +136,8 @@ case (current_state)
                     end
             end
 
-            balanceService:
-            begin
+            balanceService: begin
+                //$display("balanceService here");
                 balance=balances[cardId];
                 next_state=anotherServiceState;
             end
@@ -163,15 +147,15 @@ case (current_state)
 
             default: 
                 next_state=anotherServiceState;
-
-
-            
+ 
         endcase
     end
-    anotherServiceState: 
+
+    anotherServiceState:
         next_state=opMenu;
 
     cardout: begin
+            //$display("cardout here");
             card_out=1;        
             restart=1;
             next_state = idle;
@@ -179,6 +163,7 @@ case (current_state)
 
     default:
         next_state=idle;
+
 endcase
 end
 
@@ -199,19 +184,19 @@ task checkCard;
     case (cardId)
         cards[0]:begin
              balance = balances[cards[0]];
-             $display("Card found");
+            //  $display("Card found");
         end
         cards[1]: begin
              balance = balances[cards[1]];
-             $display("Card found");
+            //  $display("Card found");
         end 
         cards[2]: begin
              balance = balances[cards[2]];
-             $display("Card found");
+            //  $display("Card found");
         end 
         default : begin
             verified = 0;
-            $display("Card is not found");
+            // $display("Card is not found");
         end
     endcase
     end
@@ -225,13 +210,13 @@ task checkPassword;
         if(User_Password==passwords[cardId]) 
             begin 
 
-            $display("Correct Password");
+            // $display("Correct Password");
             pin_verified = 1;
 
             end
         else 
             begin
-            $display("incorrect Password");
+            // $display("incorrect Password");
             pin_verified = 0;
             end
     end
@@ -247,7 +232,7 @@ begin
         restart=1;
         balances[cardId] = balances[cardId]+amount;
         balance=balances[cardId];
-        $display("Deposited Successfully");
+        // $display("Deposited Successfully");
     end
     else begin
         restart=0;
@@ -263,12 +248,12 @@ diff = balances[cardId] - balancein;
 if(diff<0)
 begin
     checkbalance = 1'b0;
-    $display("Insufficent Balance");
+    // $display("Insufficent Balance");
 end
 else
 begin
     checkbalance = 1'b1;
-    $display("Sufficent Balance");
+    // $display("Sufficent Balance");
 end
 end
 endfunction
@@ -286,11 +271,11 @@ begin
         balances[cardId] = balances[cardId]-amount;
         balance=balances[cardId];
         withdraw = 1;
-        $display("Money withdraw successful");
+        // $display("Money withdraw successful");
     end
     else begin
         withdraw = 0;
-        $display("Money withdraw unsuccessful");
+        // $display("Money withdraw unsuccessful");
     end
  end
  else begin

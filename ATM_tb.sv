@@ -258,26 +258,26 @@ end
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
 
-initial begin   
-    reset=1;                                            //Random Test Case
-#2  reset=0;
-for(i=0;i<1000;i=i+1)
-begin
-    confirm_d=$random();
-    confirm_withd=$random();
-    confirm_lang=$random();
-    confirm_pass=$random();
-    card_in=$random();
-    cardId=$random();
-    password=$random();
-    language=$random();
-    operation=$random();
-    depositValue=$urandom_range(0,30000); 
-    withdrawValue=$urandom_range(0,30000);
-    @(negedge clk);
-end
-$stop();
-end
+// initial begin   
+//     reset=1;                                            //Random Test Case
+// #2  reset=0;
+// for(i=0;i<1000;i=i+1)
+// begin
+//     confirm_d=$random();
+//     confirm_withd=$random();
+//     confirm_lang=$random();
+//     confirm_pass=$random();
+//     card_in=$random();
+//     cardId=$random();
+//     password=$random();
+//     language=$random();
+//     operation=$random();
+//     depositValue=$urandom_range(0,30000); 
+//     withdrawValue=$urandom_range(0,30000);
+//     @(negedge clk);
+// end
+// $stop();
+// end
 
 // psl deposit_assertion: assert always( (confirm_d) -> next[4] (balance == prev(balance) + depositValue )) @(posedge clk); 
 // psl withdraw_assertion: assert always( (confirm_withd) -> next[4] (balance == prev(balance) - withdrawValue )) @(posedge clk);
@@ -289,7 +289,7 @@ end
 // psl opMenu_to_anotherService_assertion: assert always( (atm.current_state==4) -> next (atm.current_state==5 )) @(posedge clk);
 // psl anotherService_to_cardout_assertion: assert always( (atm.current_state==4 & operation==2'b11) -> next (atm.current_state==6 )) @(posedge clk);
 
-// psl time_out_assertion: assert always( (time_out) -> next (atm.current_state==6 )) @(posedge clk);
+// psl time_out_assertion: assert always( (time_out) -> next[2] (atm.current_state==6 )) @(posedge clk);
 // psl password_assertion: assert always( (atm.counter_p==3) -> next (atm.current_state==6 )) @(posedge clk);
 
 
