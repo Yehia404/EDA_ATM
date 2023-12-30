@@ -1,0 +1,976 @@
+# Coverage Report by instance with details
+# 
+# =================================================================================
+# === Instance: /\ATM_tb#atm 
+# === Design Unit: work.topmodule
+# =================================================================================
+# Branch Coverage:
+#     Enabled Coverage              Bins      Hits    Misses  Coverage
+#     ----------------              ----      ----    ------  --------
+#     Branches                        58        50         8    86.20%
+# 
+# ================================Branch Details================================
+# 
+# Branch Coverage for instance /\ATM_tb#atm 
+# 
+#     Line         Item                      Count     Source 
+#     ----         ----                      -----     ------ 
+#   File ATM.v
+# ------------------------------------IF Branch------------------------------------
+#     51                                       114     Count coming in to IF
+#     51              1                          1         if(reset) begin
+# 
+#     57              1                        113         else
+# 
+# Branch totals: 2 hits of 2 branches = 100.00%
+# 
+# ------------------------------------CASE Branch------------------------------------
+#     65                                       222     Count coming in to CASE
+#     66              1                         46         idle: begin
+# 
+#     76              1                         28         cardin: begin
+# 
+#     85              1                         28         passState: begin
+# 
+#     103             1                         14         langState: begin
+# 
+#     116             1                         44        opMenu: begin
+# 
+#     154             1                         35         anotherServiceState:
+# 
+#     157             1                         26         cardout: begin
+# 
+#     164             1                          1         default:
+# 
+# Branch totals: 8 hits of 8 branches = 100.00%
+# 
+# ------------------------------------IF Branch------------------------------------
+#     70                                        46     Count coming in to IF
+#     70              1                         22             if(card_in)
+# 
+#     72              1                         24             else
+# 
+# Branch totals: 2 hits of 2 branches = 100.00%
+# 
+# ------------------------------------IF Branch------------------------------------
+#     79                                        28     Count coming in to IF
+#     79              1                         21             if(verified)
+# 
+#     81              1                          7             else
+# 
+# Branch totals: 2 hits of 2 branches = 100.00%
+# 
+# ------------------------------------IF Branch------------------------------------
+#     88                                        28     Count coming in to IF
+#     88              1                          9             if(verified) begin
+# 
+#     92              1                         19             else if(counter_p<3)
+# 
+#                                          ***0***     All False Count
+# Branch totals: 2 hits of 3 branches = 66.66%
+# 
+# ------------------------------------IF Branch------------------------------------
+#     98                                        28     Count coming in to IF
+#     98              1                          5             if(counter_p==3 | time_out) begin
+# 
+#                                               23     All False Count
+# Branch totals: 2 hits of 2 branches = 100.00%
+# 
+# ------------------------------------IF Branch------------------------------------
+#     105                                       14     Count coming in to IF
+#     105             1                          8             if(confirm_lang) begin
+# 
+#     110             1                          6             else begin
+# 
+# Branch totals: 2 hits of 2 branches = 100.00%
+# 
+# ------------------------------------IF Branch------------------------------------
+#     111                                        6     Count coming in to IF
+#     111             1                    ***0***                 restart=time_out?1:0;
+# 
+#     111             2                          6                 restart=time_out?1:0;
+# 
+# Branch totals: 1 hit of 2 branches = 50.00%
+# 
+# ------------------------------------IF Branch------------------------------------
+#     112                                        6     Count coming in to IF
+#     112             1                    ***0***                 next_state=time_out?cardout:langState;
+# 
+#     112             2                          6                 next_state=time_out?cardout:langState;
+# 
+# Branch totals: 1 hit of 2 branches = 50.00%
+# 
+# ------------------------------------CASE Branch------------------------------------
+#     117                                       44     Count coming in to CASE
+#     118             1                         15                 deposit: begin
+# 
+#     126             1                         13                 withdraw: begin
+# 
+#     139             1                          4                 balanceService: begin
+# 
+#     145             1                         12                 cardoutop:
+# 
+#     148             1                    ***0***                 default: 
+# 
+# Branch totals: 4 hits of 5 branches = 80.00%
+# 
+# ------------------------------------IF Branch------------------------------------
+#     121                                       15     Count coming in to IF
+#     121             1                          8                     if (!restart)
+# 
+#                                                7     All False Count
+# Branch totals: 2 hits of 2 branches = 100.00%
+# 
+# ------------------------------------IF Branch------------------------------------
+#     122                                        8     Count coming in to IF
+#     122             1                    ***0***                         restart=time_out?1:0;
+# 
+#     122             2                          8                         restart=time_out?1:0;
+# 
+# Branch totals: 1 hit of 2 branches = 50.00%
+# 
+# ------------------------------------IF Branch------------------------------------
+#     123                                       15     Count coming in to IF
+#     123             1                    ***0***                     next_state=time_out?cardout:anotherServiceState; 
+# 
+#     123             2                         15                     next_state=time_out?cardout:anotherServiceState; 
+# 
+# Branch totals: 1 hit of 2 branches = 50.00%
+# 
+# ------------------------------------IF Branch------------------------------------
+#     129                                       13     Count coming in to IF
+#     129             1                         12                         if(verified) begin
+# 
+#     133             1                          1                         else begin
+# 
+# Branch totals: 2 hits of 2 branches = 100.00%
+# 
+# ------------------------------------IF Branch------------------------------------
+#     134                                        1     Count coming in to IF
+#     134             1                    ***0***                             restart=time_out?1:0;
+# 
+#     134             2                          1                             restart=time_out?1:0;
+# 
+# Branch totals: 1 hit of 2 branches = 50.00%
+# 
+# ------------------------------------IF Branch------------------------------------
+#     135                                        1     Count coming in to IF
+#     135             1                    ***0***                             next_state=time_out?cardout:anotherServiceState;
+# 
+#     135             2                          1                             next_state=time_out?cardout:anotherServiceState;
+# 
+# Branch totals: 1 hit of 2 branches = 50.00%
+# 
+# ------------------------------------CASE Branch------------------------------------
+#     184                                       28     Count coming in to CASE
+#     185             1                          4             cards[0]:begin
+# 
+#     189             1                         12             cards[1]: begin
+# 
+#     193             1                          5             cards[2]: begin
+# 
+#     197             1                          7             default : begin
+# 
+# Branch totals: 4 hits of 4 branches = 100.00%
+# 
+# ------------------------------------IF Branch------------------------------------
+#     208                                       28     Count coming in to IF
+#     208             1                         16         if(confirm_pass) begin
+# 
+#     223             1                         12         else
+# 
+# Branch totals: 2 hits of 2 branches = 100.00%
+# 
+# ------------------------------------IF Branch------------------------------------
+#     210                                       16     Count coming in to IF
+#     210             1                          5             if(User_Password==passwords[cardId]) 
+# 
+#     217             1                         11             else 
+# 
+# Branch totals: 2 hits of 2 branches = 100.00%
+# 
+# ------------------------------------IF Branch------------------------------------
+#     231                                       15     Count coming in to IF
+#     231             1                          7         if(confirm_d)begin
+# 
+#     237             1                          8         else begin
+# 
+# Branch totals: 2 hits of 2 branches = 100.00%
+# 
+# ------------------------------------IF Branch------------------------------------
+#     248                                       13     Count coming in to IF
+#     248             1                          2     if(diff<0)
+# 
+#     253             1                         11     else
+# 
+# Branch totals: 2 hits of 2 branches = 100.00%
+# 
+# ------------------------------------IF Branch------------------------------------
+#     268                                       13     Count coming in to IF
+#     268             1                          7      if(confirm_withd) begin
+# 
+#     281             1                          6      else begin
+# 
+# Branch totals: 2 hits of 2 branches = 100.00%
+# 
+# ------------------------------------IF Branch------------------------------------
+#     270                                        7     Count coming in to IF
+#     270             1                          6         if(can) begin
+# 
+#     276             1                          1         else begin
+# 
+# Branch totals: 2 hits of 2 branches = 100.00%
+# 
+# 
+# Condition Coverage:
+#     Enabled Coverage              Bins   Covered    Misses  Coverage
+#     ----------------              ----      ----    ------  --------
+#     Conditions                       5         3         2    60.00%
+# 
+# ================================Condition Details================================
+# 
+# Condition Coverage for instance /\ATM_tb#atm  --
+# 
+#   File ATM.v
+# ----------------Focused Condition View-------------------
+# Line       92 Item    1  (counter_p < 3)
+# Condition totals: 0 of 1 input term covered = 0.00%
+# 
+#        Input Term   Covered  Reason for no coverage   Hint
+#       -----------  --------  -----------------------  --------------
+#   (counter_p < 3)         N  '_0' not hit             Hit '_0'
+# 
+#      Rows:       Hits  FEC Target            Non-masking condition(s)      
+#  ---------  ---------  --------------------  -------------------------     
+#   Row   1:    ***0***  (counter_p < 3)_0     -                             
+#   Row   2:          1  (counter_p < 3)_1     -                             
+# 
+# ----------------Focused Condition View-------------------
+# Line       98 Item    1  ((counter_p == 3) | time_out)
+# Condition totals: 1 of 2 input terms covered = 50.00%
+# 
+#         Input Term   Covered  Reason for no coverage   Hint
+#        -----------  --------  -----------------------  --------------
+#   (counter_p == 3)         Y
+#           time_out         N  '_1' not hit             Hit '_1'
+# 
+#      Rows:       Hits  FEC Target            Non-masking condition(s)      
+#  ---------  ---------  --------------------  -------------------------     
+#   Row   1:          1  (counter_p == 3)_0    ~time_out                     
+#   Row   2:          1  (counter_p == 3)_1    ~time_out                     
+#   Row   3:          1  time_out_0            ~(counter_p == 3)             
+#   Row   4:    ***0***  time_out_1            ~(counter_p == 3)             
+# 
+# ----------------Focused Condition View-------------------
+# Line       210 Item    1  (User_Password == passwords[cardId])
+# Condition totals: 1 of 1 input term covered = 100.00%
+# 
+#                             Input Term   Covered  Reason for no coverage   Hint
+#                            -----------  --------  -----------------------  --------------
+#   (User_Password == passwords[cardId])         Y
+# 
+#      Rows:       Hits  FEC Target                              Non-masking condition(s)      
+#  ---------  ---------  --------------------                    -------------------------     
+#   Row   1:          1  (User_Password == passwords[cardId])_0  -                             
+#   Row   2:          1  (User_Password == passwords[cardId])_1  -                             
+# 
+# ----------------Focused Condition View-------------------
+# Line       248 Item    1  (diff < 0)
+# Condition totals: 1 of 1 input term covered = 100.00%
+# 
+#   Input Term   Covered  Reason for no coverage   Hint
+#  -----------  --------  -----------------------  --------------
+#   (diff < 0)         Y
+# 
+#      Rows:       Hits  FEC Target            Non-masking condition(s)      
+#  ---------  ---------  --------------------  -------------------------     
+#   Row   1:          1  (diff < 0)_0          -                             
+#   Row   2:          1  (diff < 0)_1          -                             
+# 
+# 
+# FSM Coverage:
+#     Enabled Coverage              Bins      Hits    Misses  Coverage
+#     ----------------              ----      ----    ------  --------
+#     FSM States                       7         7         0   100.00%
+#     FSM Transitions                 16        10         6    62.50%
+# 
+# ================================FSM Details================================
+# 
+# FSM Coverage for instance /\ATM_tb#atm  --
+# 
+# FSM_ID: current_state
+#     Current State Object : current_state
+#     ----------------------
+#     State Value MapInfo :
+#     ---------------------
+# Line          State Name               Value
+# ----          ----------               -----
+#   66                idle                   0
+#   76              cardin                   1
+#  157             cardout                   6
+#   85           passState                   2
+#  103           langState                   3
+#  116              opMenu                   4
+#  154 anotherServiceState                   5
+#     Covered States :
+#     ----------------
+#                    State           Hit_count
+#                    -----           ---------
+#                     idle                  22          
+#                   cardin                  14          
+#                  cardout                  13          
+#                passState                  18          
+#                langState                   7          
+#                   opMenu                  22          
+#      anotherServiceState                  18          
+#     Covered Transitions :
+#     ---------------------
+# Line            Trans_ID           Hit_count          Transition          
+# ----            --------           ---------          ----------          
+#   71                   0                  14          idle -> cardin                
+#   82                   1                   4          cardin -> cardout             
+#   80                   2                  10          cardin -> passState           
+#  161                   4                  13          cardout -> idle               
+#   99                   5                   5          passState -> cardout          
+#   90                   6                   5          passState -> langState          
+#  108                   9                   5          langState -> opMenu           
+#  149                  11                  18          opMenu -> anotherServiceState          
+#  146                  12                   4          opMenu -> cardout             
+#  155                  14                  17          anotherServiceState -> opMenu          
+#     Uncovered Transitions :
+#     -----------------------
+# Line            Trans_ID          Transition          
+# ----            --------          ----------          
+#   52                   3          cardin -> idle      
+#   52                   7          passState -> idle   
+#  112                   8          langState -> cardout
+#   52                  10          langState -> idle   
+#   52                  13          opMenu -> idle      
+#   52                  15          anotherServiceState -> idle
+# 
+# 
+#     Summary                       Bins      Hits    Misses  Coverage
+#     -------                       ----      ----    ------  --------
+#         FSM States                   7         7         0   100.00%
+#         FSM Transitions             16        10         6    62.50%
+# Statement Coverage:
+#     Enabled Coverage              Bins      Hits    Misses  Coverage
+#     ----------------              ----      ----    ------  --------
+#     Statements                      77        76         1    98.70%
+# 
+# ================================Statement Details================================
+# 
+# Statement Coverage for instance /\ATM_tb#atm  --
+# 
+#     Line         Item                      Count     Source 
+#     ----         ----                      -----     ------ 
+#   File ATM.v
+#     1                                                module topmodule(
+# 
+#     2                                                input clk,reset,language,card_in,confirm_d,confirm_withd,confirm_lang,confirm_pass,
+# 
+#     3                                                input [1:0]cardId,password,
+# 
+#     4                                                input [1:0]operation,
+# 
+#     5                                                input [15:0]depositValue,withdrawValue,
+# 
+#     6                                                output time_out,
+# 
+#     7                                                output reg card_out,
+# 
+#     8                                                output reg [15:0]balance
+# 
+#     9                                                );
+# 
+#     10                                               // Parameters including cards, passwords, states, operations and languages
+# 
+#     11                                               parameter card1=2'b00,card2=2'b01,card3=2'b10;
+# 
+#     12                                               parameter p1=2'b00,p2=2'b01,p3=2'b10;
+# 
+#     13                                               parameter idle=3'b000,cardin=3'b001,passState=3'b010,langState=3'b011,opMenu=3'b100,anotherServiceState=3'b101,cardout=3'b110;
+# 
+#     14                                               parameter deposit=2'b00,withdraw=2'b01,balanceService=2'b10,cardoutop=2'b11;
+# 
+#     15                                               parameter English=1'b0,Arabic=1'b1;
+# 
+#     16                                               //Arrays for storing cards, passwords,balances and languages
+# 
+#     17                                               reg [1:0]cards[2:0];
+# 
+#     18                                               reg [1:0]passwords[2:0];
+# 
+#     19                                               reg [15:0]balances[2:0];
+# 
+#     20                                               reg languages[1:0];
+# 
+#     21                                               
+# 
+#     22                                               reg [1:0] counter_p; //password fail counter
+# 
+#     23                                               reg [2:0] current_state, next_state; // FSM States
+# 
+#     24                                               reg verified; // verification for that card, password, deposit and withdraw are successful
+# 
+#     25                                               reg syslang; // System Language
+# 
+#     26                                               
+# 
+#     27                                               // Time_out timer and its restart
+# 
+#     28                                               reg restart;
+# 
+#     29                                               timer idle_timer(clk,reset,restart,time_out);
+# 
+#     30                                               
+# 
+#     31                                               // Arrays initialization
+# 
+#     32                                               initial 
+# 
+#     33                                               begin
+# 
+#     34              1                          1         cards[0]=card1;
+# 
+#     35              1                          1         cards[1]=card2;
+# 
+#     36              1                          1         cards[2]=card3;
+# 
+#     37              1                          1         passwords[cards[0]]=p1;
+# 
+#     38              1                          1         passwords[cards[1]]=p2;
+# 
+#     39              1                          1         passwords[cards[2]]=p3;
+# 
+#     40              1                          1         balances[cards[0]]=3000;
+# 
+#     41              1                          1         balances[cards[1]]=8000;
+# 
+#     42              1                          1         balances[cards[2]]=12000;
+# 
+#     43              1                          1         languages[English]=English;
+# 
+#     44              1                          1         languages[Arabic]=Arabic; 
+# 
+#     45                                               end
+# 
+#     46                                               
+# 
+#     47                                               // State Memory
+# 
+#     48              1                        114     always @ (posedge clk or posedge reset)
+# 
+#     49                                               begin
+# 
+#     50                                                   
+# 
+#     51                                                   if(reset) begin
+# 
+#     52              1                          1             current_state<=idle;
+# 
+#     53              1                          1             restart<=1;
+# 
+#     54              1                          1             counter_p<=0;
+# 
+#     55              1                          1             balance<=0;
+# 
+#     56                                                   end
+# 
+#     57                                                   else
+# 
+#     58              1                        113             current_state<=next_state;
+# 
+#     59                                               end
+# 
+#     60                                               
+# 
+#     61                                               // Next State Logic and Output Logic
+# 
+#     62              1                        222     always @ (*)
+# 
+#     63                                               begin
+# 
+#     64                                               
+# 
+#     65                                               case (current_state)
+# 
+#     66                                                   idle: begin
+# 
+#     67                                                       // $display("idle here");
+# 
+#     68              1                         46             card_out=0;
+# 
+#     69              1                         46             counter_p=0;
+# 
+#     70                                                       if(card_in)
+# 
+#     71              1                         22                 next_state=cardin;
+# 
+#     72                                                       else
+# 
+#     73              1                         24                 next_state=idle;
+# 
+#     74                                                   end
+# 
+#     75                                               
+# 
+#     76                                                   cardin: begin
+# 
+#     77                                                       // $display("cardin here");
+# 
+#     78              1                         28             checkCard(cardId,balance,verified);
+# 
+#     79                                                       if(verified)
+# 
+#     80              1                         21                 next_state=passState;
+# 
+#     81                                                       else
+# 
+#     82              1                          7                 next_state=cardout;
+# 
+#     83                                                   end
+# 
+#     84                                               
+# 
+#     85                                                   passState: begin
+# 
+#     86                                                       // $display("password here");
+# 
+#     87              1                         28             checkPassword(password,verified);
+# 
+#     88                                                       if(verified) begin
+# 
+#     89              1                          9                 restart=1;
+# 
+#     90              1                          9                 next_state=langState;
+# 
+#     91                                                       end
+# 
+#     92                                                       else if(counter_p<3)
+# 
+#     93                                                           begin
+# 
+#     94              1                         19                 counter_p=counter_p+1;
+# 
+#     95              1                         19                 next_state=passState;
+# 
+#     96                                                           end
+# 
+#     97                                                       
+# 
+#     98                                                       if(counter_p==3 | time_out) begin
+# 
+#     99              1                          5                 next_state=cardout;
+# 
+#     100                                                      end
+# 
+#     101                                                  end
+# 
+#     102                                              
+# 
+#     103                                                  langState: begin
+# 
+#     104                                                      // $display("Language here");
+# 
+#     105                                                      if(confirm_lang) begin
+# 
+#     106             1                          8                 restart=1;
+# 
+#     107             1                          8                 syslang=languages[language];
+# 
+#     108             1                          8                 next_state=opMenu;
+# 
+#     109                                                      end
+# 
+#     110                                                      else begin
+# 
+#     111             1                          6                 restart=time_out?1:0;
+# 
+#     112             1                          6                 next_state=time_out?cardout:langState;
+# 
+#     113                                                      end
+# 
+#     114                                                  end
+# 
+#     115                                              
+# 
+#     116                                                 opMenu: begin
+# 
+#     117                                                      case (operation)
+# 
+#     118                                                          deposit: begin
+# 
+#     119                                                              // $display("deposit here");
+# 
+#     120             1                         15                     depositfunc(depositValue);
+# 
+#     121                                                              if (!restart)
+# 
+#     122             1                          8                         restart=time_out?1:0;
+# 
+#     123             1                         15                     next_state=time_out?cardout:anotherServiceState; 
+# 
+#     124                                                          end
+# 
+#     125                                              
+# 
+#     126                                                          withdraw: begin
+# 
+#     127                                                              //$display("withdraw here");
+# 
+#     128             1                         13                         withdrawfunc(withdrawValue,verified);
+# 
+#     129                                                                  if(verified) begin
+# 
+#     130             1                         12                             restart=1;
+# 
+#     131             1                         12                             next_state=anotherServiceState;
+# 
+#     132                                                                  end
+# 
+#     133                                                                  else begin
+# 
+#     134             1                          1                             restart=time_out?1:0;
+# 
+#     135             1                          1                             next_state=time_out?cardout:anotherServiceState;
+# 
+#     136                                                                  end
+# 
+#     137                                                          end
+# 
+#     138                                              
+# 
+#     139                                                          balanceService: begin
+# 
+#     140                                                              //$display("balanceService here");
+# 
+#     141             1                          4                     balance=balances[cardId];
+# 
+#     142             1                          4                     next_state=anotherServiceState;
+# 
+#     143                                                          end
+# 
+#     144                                              
+# 
+#     145                                                          cardoutop:
+# 
+#     146             1                         12                     next_state=cardout;
+# 
+#     147                                              
+# 
+#     148                                                          default: 
+# 
+#     149             1                    ***0***                     next_state=anotherServiceState;
+# 
+#     150                                               
+# 
+#     151                                                      endcase
+# 
+#     152                                                  end
+# 
+#     153                                              
+# 
+#     154                                                  anotherServiceState:
+# 
+#     155             1                         35             next_state=opMenu;
+# 
+#     156                                              
+# 
+#     157                                                  cardout: begin
+# 
+#     158                                                          //$display("cardout here");
+# 
+#     159             1                         26                 card_out=1;        
+# 
+#     160             1                         26                 restart=1;
+# 
+#     161             1                         26                 next_state = idle;
+# 
+#     162                                                  end
+# 
+#     163                                              
+# 
+#     164                                                  default:
+# 
+#     165             1                          1             next_state=idle;
+# 
+#     166                                              
+# 
+#     167                                              endcase
+# 
+#     168                                              end
+# 
+#     169                                              
+# 
+#     170                                              
+# 
+#     171                                              
+# 
+#     172                                              
+# 
+#     173                                              
+# 
+#     174                                              
+# 
+#     175                                              task checkCard;
+# 
+#     176                                              
+# 
+#     177                                                  input [1:0] cardId;
+# 
+#     178                                                  output reg[31:0] balance;
+# 
+#     179                                                  output verified;
+# 
+#     180                                                  begin
+# 
+#     181             1                         28         verified = 1;
+# 
+#     182             1                         28         balance = 0;
+# 
+#     183                                                  
+# 
+#     184                                                  case (cardId)
+# 
+#     185                                                      cards[0]:begin
+# 
+#     186             1                          4                  balance = balances[cards[0]];
+# 
+#     187                                                          //  $display("Card found");
+# 
+#     188                                                      end
+# 
+#     189                                                      cards[1]: begin
+# 
+#     190             1                         12                  balance = balances[cards[1]];
+# 
+#     191                                                          //  $display("Card found");
+# 
+#     192                                                      end 
+# 
+#     193                                                      cards[2]: begin
+# 
+#     194             1                          5                  balance = balances[cards[2]];
+# 
+#     195                                                          //  $display("Card found");
+# 
+#     196                                                      end 
+# 
+#     197                                                      default : begin
+# 
+#     198             1                          7                 verified = 0;
+# 
+#     199                                                          // $display("Card is not found");
+# 
+#     200                                                      end
+# 
+#     201                                                  endcase
+# 
+#     202                                                  end
+# 
+#     203                                              endtask
+# 
+#     204                                              
+# 
+#     205                                              task checkPassword;
+# 
+#     206                                                  input [1:0]User_Password;
+# 
+#     207                                                  output reg pin_verified;
+# 
+#     208                                                  if(confirm_pass) begin
+# 
+#     209             1                         16             restart=1;
+# 
+#     210                                                      if(User_Password==passwords[cardId]) 
+# 
+#     211                                                          begin 
+# 
+#     212                                              
+# 
+#     213                                                          // $display("Correct Password");
+# 
+#     214             1                          5                 pin_verified = 1;
+# 
+#     215                                              
+# 
+#     216                                                          end
+# 
+#     217                                                      else 
+# 
+#     218                                                          begin
+# 
+#     219                                                          // $display("incorrect Password");
+# 
+#     220             1                         11                 pin_verified = 0;
+# 
+#     221                                                          end
+# 
+#     222                                                  end
+# 
+#     223                                                  else
+# 
+#     224             1                         12             restart=0;
+# 
+#     225                                              
+# 
+#     226                                              endtask
+# 
+#     227                                              
+# 
+#     228                                              task depositfunc;
+# 
+#     229                                              input [15:0] amount;
+# 
+#     230                                              begin
+# 
+#     231                                                  if(confirm_d)begin
+# 
+#     232             1                          7             restart=1;
+# 
+#     233             1                          7             balances[cardId] = balances[cardId]+amount;
+# 
+#     234             1                          7             balance=balances[cardId];
+# 
+#     235                                                      // $display("Deposited Successfully");
+# 
+#     236                                                  end
+# 
+#     237                                                  else begin
+# 
+#     238             1                          8             restart=0;
+# 
+#     239                                                  end
+# 
+#     240                                              end
+# 
+#     241                                              endtask
+# 
+#     242                                              
+# 
+#     243                                              function [0:0] checkbalance;
+# 
+#     244                                              input [15:0] balancein;
+# 
+#     245                                              integer diff;
+# 
+#     246                                              begin
+# 
+#     247             1                         13     diff = balances[cardId] - balancein;
+# 
+#     248                                              if(diff<0)
+# 
+#     249                                              begin
+# 
+#     250             1                          2         checkbalance = 1'b0;
+# 
+#     251                                                  // $display("Insufficent Balance");
+# 
+#     252                                              end
+# 
+#     253                                              else
+# 
+#     254                                              begin
+# 
+#     255             1                         11         checkbalance = 1'b1;
+# 
+#     256                                                  // $display("Sufficent Balance");
+# 
+#     257                                              end
+# 
+#     258                                              end
+# 
+#     259                                              endfunction
+# 
+#     260                                              
+# 
+#     261                                              
+# 
+#     262                                              task withdrawfunc;
+# 
+#     263                                              input [15:0] amount;
+# 
+#     264                                              output withdraw;
+# 
+#     265                                              reg can;
+# 
+#     266                                              begin  
+# 
+#     267             1                         13      can = checkbalance(amount);
+# 
+#     268                                               if(confirm_withd) begin
+# 
+#     269             1                          7         restart=1;
+# 
+#     270                                                  if(can) begin
+# 
+#     271             1                          6             balances[cardId] = balances[cardId]-amount;
+# 
+#     272             1                          6             balance=balances[cardId];
+# 
+#     273             1                          6             withdraw = 1;
+# 
+#     274                                                      // $display("Money withdraw successful");
+# 
+#     275                                                  end
+# 
+#     276                                                  else begin
+# 
+#     277             1                          1             withdraw = 0;
+# 
+#     278                                                      // $display("Money withdraw unsuccessful");
+# 
+#     279                                                  end
+# 
+#     280                                               end
+# 
+#     281                                               else begin
+# 
+#     282             1                          6         restart =0;
+# 
+# 
+# Toggle Coverage:
+#     Enabled Coverage              Bins      Hits    Misses  Coverage
+#     ----------------              ----      ----    ------  --------
+#     Toggles                        150       145         5    96.66%
+# 
+# ================================Toggle Details================================
+# 
+# Toggle Coverage for instance /\ATM_tb#atm  --
+# 
+#                                               Node      1H->0L      0L->1H  "Coverage"
+#                                               ---------------------------------------
+#                                      balance[0-15]           1           1      100.00 
+#                                        cardId[0-1]           1           1      100.00 
+#                                            card_in           1           1      100.00 
+#                                           card_out           1           1      100.00 
+#                                                clk           1           1      100.00 
+#                                          confirm_d           1           1      100.00 
+#                                       confirm_lang           1           1      100.00 
+#                                       confirm_pass           1           1      100.00 
+#                                      confirm_withd           1           1      100.00 
+#                                     counter_p[0-1]           1           1      100.00 
+#                                 current_state[0-2]           1           1      100.00 
+#                                 depositValue[0-14]           1           1      100.00 
+#                                   depositValue[15]           0           0        0.00 
+#                                           language           1           1      100.00 
+#                                    next_state[0-2]           1           1      100.00 
+#                                     operation[0-1]           1           1      100.00 
+#                                      password[0-1]           1           1      100.00 
+#                                              reset           1           0       50.00 
+#                                            restart           1           1      100.00 
+#                                            syslang           1           1      100.00 
+#                                           time_out           1           1      100.00 
+#                                           verified           1           1      100.00 
+#                                withdrawValue[0-14]           1           1      100.00 
+#                                  withdrawValue[15]           0           0        0.00 
+# 
+# Total Node Count     =         75 
+# Toggled Node Count   =         72 
+# Untoggled Node Count =          3 
+# 
+# Toggle Coverage      =      96.66% (145 of 150 bins)
+# 
+# 
+# Total Coverage By Instance (filtered view): 84.01%
