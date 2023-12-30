@@ -66,6 +66,7 @@ initial begin                                       //Directed Test Case (True V
     depositValue=16'd256; 
     withdrawValue=0;
 #35
+    confirm_d=0;
     operation=2'b11;
     @(negedge clk);
     $stop;
@@ -89,6 +90,7 @@ end
 //     depositValue=0; 
 //     withdrawValue=16'd256;
 // #35
+//     confirm_withd=0;
 //     operation=2'b11;
 //     @(negedge clk);
 //     $stop;
@@ -114,9 +116,11 @@ end
 //     withdrawValue=16'd256;
     
 // #25
+//     confirm_withd=0;
 //     operation=2'b00;
 //     depositValue=16'd1000;
 // #20
+//     confirm_d=0;
 //     operation=2'b11;
 //     @(negedge clk);
 //     $stop;

@@ -1,0 +1,3 @@
+balance=    0
+balance= 3000
+balance= 3256
